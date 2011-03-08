@@ -17,6 +17,8 @@ filetype on
 filetype indent on
 filetype plugin on
 
+set number
+
 syntax on
 syntax match Tab /\t/
 
@@ -137,6 +139,9 @@ nmap ]o <Plug>unimpairedBlankDown
 nnoremap <silent>[d m`:silent -g/\m^\s*$/d<CR>``:noh<CR>
 nnoremap <silent>]d m`:silent +g/\m^\s*$/d<CR>``:noh<CR>
 
+" open file in same dir
+nnoremap <Leader>e :e <C-R>=expand('%:p:h') . '/'<CR>
+
 """"""""""""""""""""""""""""""""""
 " Plugin/Filetype Related
 """"""""""""""""""""""""""""""""""
@@ -169,13 +174,17 @@ else
 endif
 
 set list
-set listchars=tab:›\ ,eol:¬
+
+" GUI specific
+if has("gui_running")
+endif 
 
 " colours
 set t_Co=256
 set background=dark
 colorscheme peaksea
 highlight SpecialKey ctermfg=DarkGray guifg=#666666
+set listchars=tab:›\ ,eol:¬
 "set gfn=Droid_Sans_Mono:h11
 "set gfn=ProggyCleanTT:h15
 set gfn=Monaco:h10
@@ -187,6 +196,7 @@ let g:lisp_rainbow = 1
 if &diff
   set t_Co=256
   set background=dark
+  set diffopt+=iwhite
   colorscheme peaksea
   nmap Q :qa!<CR>
   nmap <space> ]c
@@ -196,8 +206,9 @@ endif
 if v:version >= 703
   " Set color column colour
   set colorcolumn=80
-  set relativenumber
-  au BufNewFile,BufRead * set rnu
+  " really liked relativenumber at first but it's a bit buggy
+  " set relativenumber
+  " au BufNewFile,BufRead * set rnu
   hi ColorColumn ctermbg=DarkGray guibg=#2d2d2d
 
   " Keep undo files so we can rollback
