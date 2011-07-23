@@ -27,4 +27,4 @@
 	url = https://github.com/msanders/snipmate.vim.git
 [submodule "vim/bundle/vim-tabspaces"]
 	path = vim/bundle/vim-tabspaces
-	url = git://github.com/nrocy/vim-tabspaces.git
+	url = https://github.com/nrocy/vim-tabspaces.git
