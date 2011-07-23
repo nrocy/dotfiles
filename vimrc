@@ -44,7 +44,6 @@ set formatoptions=qrn1
 set nobackup
 set nowb
 set noswapfile
-set undodir=~/.vim/undo
 
 " Use arrows for cnext, cprev
 nmap <Up> :cprev<CR>
@@ -59,6 +58,8 @@ set history=1000
 set wildmenu
 set wildmode=list:longest
 set showmode
+
+let g:easytags_cmd = '/opt/local/bin/ctags'
 
 " scroll offset
 set scrolloff=3
@@ -177,6 +178,8 @@ set list
 
 " GUI specific
 if has("gui_running")
+  set background=dark
+  " colorscheme solarized
 endif 
 
 " colours
@@ -184,7 +187,13 @@ set t_Co=256
 set background=dark
 colorscheme peaksea
 highlight SpecialKey ctermfg=DarkGray guifg=#666666
-set listchars=tab:›\ ,eol:¬
+
+if has("multi_byte")
+  set encoding=utf-8
+  setglobal fileencoding=utf-8
+  set listchars=tab:›\ ,eol:¬
+endif
+
 "set gfn=Droid_Sans_Mono:h11
 "set gfn=ProggyCleanTT:h15
 set gfn=Monaco:h10
@@ -213,6 +222,7 @@ if v:version >= 703
 
   " Keep undo files so we can rollback
   set undofile
+  set undodir=~/.vim/undo
 else
   set number
 endif
