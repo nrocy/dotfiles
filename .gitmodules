@@ -16,9 +16,6 @@
 [submodule "vim/bundle/nerdcommenter"]
 	path = vim/bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
-[submodule "vim/bundle/vim-tabspaces"]
-	path = vim/bundle/vim-tabspaces
-	url = git@github.com:nrocy/vim-tabspaces.git
 [submodule "vim/bundle/vim-easytags"]
 	path = vim/bundle/vim-easytags
 	url = https://github.com/xolox/vim-easytags.git
@@ -28,3 +25,6 @@
 [submodule "vim/bundle/snipmate.vim"]
 	path = vim/bundle/snipmate.vim
 	url = https://github.com/msanders/snipmate.vim.git
+[submodule "vim/bundle/vim-tabspaces"]
+	path = vim/bundle/vim-tabspaces
+	url = git://github.com/nrocy/vim-tabspaces.git
