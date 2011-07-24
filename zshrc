@@ -6,7 +6,7 @@ SAVEHIST=1000
 setopt share_history
 
 # settings
-setopt correct_all
+# setopt correct_all
 setopt autocd
 setopt hist_ignore_dups
 
@@ -18,12 +18,14 @@ export MANPATH=/opt/local/share/man:$MANPATH
 typeset -U path # fix any path dupes
 
 # keybindings (emac-style)
-bindkey -e
+# bindkey -e
 
 # colors
+export CLICOLOR=1
+
 autoload colors && colors
-LS_COLORS='no=00:fi=00:di=00;36:ln=00;37;44:pi=40;33:so=01;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=01;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:';
-export LS_COLORS
+export CLICOLOR=1
+export LSCOLORS=gxfxcxdxbxegedabagacad
 
 for COLOR in RED GREEN YELLOW WHITE BLACK CYAN; do
   eval PR_$COLOR='%{$fg[${(L)COLOR}]%}'        
@@ -41,6 +43,8 @@ fi
 alias cd..='cd ..'
 alias fu='sudo $( fc -ln -1)'
 alias grep='grep --color=auto'
+alias soywiki='SOYWIKI_VIM=mvim soywiki'
+alias diff='diff -u'
 
 # tab completion
 autoload -U compinit && compinit
@@ -86,7 +90,7 @@ function lprompt {
 
   PROMPT="
 ${PR_CYAN}${current_path//\//${PR_WHITE}/${PR_RESET}${PR_CYAN}}${PR_RESET} $vcs_info_msg_0_$(prompt_char) "
-  RPROMPT="[${PR_YELLOW}%n@%m${PR_RESET}]"
+  #RPROMPT="[${PR_YELLOW}%n@%m${PR_RESET}]"
 }
 
 lprompt
