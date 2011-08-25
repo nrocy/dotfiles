@@ -2,7 +2,7 @@
 # history
 HISTFILE=~/.zsh_history
 HISTSIZE=5000
-SAVEHIST=1000
+SAVEHIST=100000
 setopt share_history
 
 # settings
@@ -45,6 +45,7 @@ alias fu='sudo $( fc -ln -1)'
 alias grep='grep --color=auto'
 alias soywiki='SOYWIKI_VIM=mvim soywiki'
 alias diff='diff -u'
+alias be='bundle exec'
 
 # tab completion
 autoload -U compinit && compinit
@@ -95,8 +96,10 @@ ${PR_CYAN}${current_path//\//${PR_WHITE}/${PR_RESET}${PR_CYAN}}${PR_RESET} $vcs_
 
 lprompt
 
-# rvm
+# rvm / vim+rvm
+SHELL=/bin/zsh
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
 
 
 

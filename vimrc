@@ -1,6 +1,6 @@
 
 " pathogen kicks ass
-filetype off 
+filetype off
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
 
@@ -22,7 +22,7 @@ set number
 syntax on
 syntax match Tab /\t/
 
-set tabstop=2 softtabstop=2 shiftwidth=2 expandtab autoindent smartindent 
+set tabstop=2 softtabstop=2 shiftwidth=2 expandtab autoindent smartindent
 set visualbell
 
 set tags=tags;/
@@ -35,8 +35,9 @@ set ignorecase
 set smartcase
 set grepprg=/opt/local/bin/ack
 set gdefault "assume /g for :s subs
+set incsearch
 
-" Long lines 
+" Long lines
 set wrap
 set formatoptions=qrn1
 
@@ -50,7 +51,7 @@ nmap <Up> :cprev<CR>
 nmap <Down> :cnext<CR>
 
 " CScope seems nicer than ctags
-set cscopetag
+" set cscopetag
 
 " from: http://items.sjbach.com/319/configuring-vim-right
 set hidden
@@ -59,7 +60,10 @@ set wildmenu
 set wildmode=list:longest
 set showmode
 
-let g:easytags_cmd = '/opt/local/bin/ctags'
+" wildcards
+set wildignore+=templates_c,vendor,.git
+
+" let g:easytags_cmd = '/opt/local/bin/ctags'
 
 " scroll offset
 set scrolloff=3
@@ -73,9 +77,9 @@ cnoremap <C-A> <Home>
 cnoremap <C-E> <End>
 
 " NERDTree - don't use this much, but the bookmarks are nice for projects
-nmap <F7> :NERDTreeToggle<CR>
-let NERDTreeBookmarksFile="/Users/nroc/.vim/NERDTreeBookmarks"
-let NERDTreeShowBookmarks=1
+" nmap <F7> :NERDTreeToggle<CR>
+" let NERDTreeBookmarksFile="/Users/nroc/.vim/NERDTreeBookmarks"
+" let NERDTreeShowBookmarks=1
 
 " from http://www.derekwyatt.org/vim/the-vimrc-file/my-vimrc-file/
 set hlsearch
@@ -88,7 +92,9 @@ nmap <silent> ,cd :lcd %:h<CR>
 " from http://amix.dk/vim/vimrc.html, when vimrc is edited, reload it
 autocmd! bufwritepost .vimrc source ~/.vimrc
 
-" set pman as K binding for php files 
+autocmd bufwritepre * :%s/\s\+$//e
+
+" set pman as K binding for php files
 autocmd FileType php setlocal keywordprg=pman
 
 " show function prototype when only one match during omnicomplete
@@ -147,7 +153,7 @@ nnoremap <Leader>e :e <C-R>=expand('%:p:h') . '/'<CR>
 " Plugin/Filetype Related
 """"""""""""""""""""""""""""""""""
 
-" a.vim 
+" a.vim
 let g:alternateExtensions_tpl = "php"
 let g:alternateExtensions_php = "tpl"
 let g:alternateSearchPath = 'templates'
@@ -169,7 +175,7 @@ set guioptions-=T
 if has('ruby')
   map <D-k> :FuzzyFinderTextMate<CR>
   map <D-r> :! php -l %<CR>
-else 
+else
   map <D-k> :FindFileSplit<CR>
   map <D-K> :FindFile<CR>
 endif
@@ -180,7 +186,7 @@ set list
 if has("gui_running")
   set background=dark
   " colorscheme solarized
-endif 
+endif
 
 " colours
 set t_Co=256
@@ -226,4 +232,23 @@ if v:version >= 703
 else
   set number
 endif
+
+" misc funcs that sometimes come in useful, should really be in their own
+" files but I can't be arsed at the mo.
+
+:nmap <Leader>- :normal YpVr-<cr>
+
+function! AdiumLogToTextFunction()
+  let s:globaldefault = &gdefault
+  let &gdefault = 0
+  silent! %s/<message.\+time="\([^"]\+\)".\+alias="\([^"]\+\)\">/\1 \2: /g
+  silent! %s/<\_.\{-1,\}>//g
+  silent! %s/&apos;/'/g
+  silent! %s/&amp;/\&/g
+  silent! %s/&quot;/"/g
+  silent! %s/&gt;/\>/g
+  silent! %s/&lt;/\</g
+  let &gdefault = s:globaldefault
+endfunction
+command! AdiumLogToText call AdiumLogToTextFunction()
 
