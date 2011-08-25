@@ -28,3 +28,6 @@
 [submodule "vim/bundle/vim-tabspaces"]
 	path = vim/bundle/vim-tabspaces
 	url = git://github.com/nrocy/vim-tabspaces.git
+[submodule "vim/bundle/vim-rails"]
+	path = vim/bundle/vim-rails
+	url = git://github.com/tpope/vim-rails.git
