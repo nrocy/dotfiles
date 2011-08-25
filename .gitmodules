@@ -31,3 +31,6 @@
 [submodule "vim/bundle/vim-rails"]
 	path = vim/bundle/vim-rails
 	url = git://github.com/tpope/vim-rails.git
+[submodule "vim/bundle/Command-T"]
+	path = vim/bundle/Command-T
+	url = git://github.com/wincent/Command-T.git
