@@ -92,6 +92,7 @@ nmap <silent> ,cd :lcd %:h<CR>
 " from http://amix.dk/vim/vimrc.html, when vimrc is edited, reload it
 autocmd! bufwritepost .vimrc source ~/.vimrc
 
+" nuke whitespace at the end of lines before saving
 autocmd bufwritepre * :%s/\s\+$//e
 
 " set pman as K binding for php files
@@ -133,9 +134,6 @@ map <Leader>da :bufdo bd<CR>
 " Saving
 map <Leader>w <ESC>:w<CR>
 
-" Reindent whole file and move back to where you were
-nnoremap <Leader>r G=gg<C-o><C-o>
-
 " from @tpope's util plugin
 nnoremap <silent> <Plug>unimpairedBlankUp   :<C-U>put!=repeat(nr2char(10),v:count)<Bar>']+1<CR>
 nnoremap <silent> <Plug>unimpairedBlankDown :<C-U>put =repeat(nr2char(10),v:count)<Bar>'[-1<CR>
@@ -163,22 +161,16 @@ map <Leader>a :AV<CR>
 nnoremap <Leader>p :call PhpDocSingle()<CR>
 vnoremap <Leader>p :call PhpDocRange()<CR>
 
-" fuzzyfilefinder
-map <Leader>rf :FuzzyFinderTextMateRefreshFiles<CR>
-
-let g:fuzzy_ignore = "*.png;*.PNG;*.JPG;*.jpg;*.GIF;*.gif;vendor/**;coverage/**;tmp/**;rdoc/**;templates_c/**"
+nmap <silent> <Leader>f :CommandT<CR>
+let g:CommandTSelectNextMap = '<C-n>'
+let g:CommandTSelectPrevMap = '<C-p>'
+let g:CommandTAcceptSelectionSplitMap = '<C-j>'
+let g:CommandTAcceptSelectionVSplitMap = '<C-k>'
 
 " osx/gui settings
 set guioptions-=r
 set guioptions-=L
 set guioptions-=T
-if has('ruby')
-  map <D-k> :FuzzyFinderTextMate<CR>
-  map <D-r> :! php -l %<CR>
-else
-  map <D-k> :FindFileSplit<CR>
-  map <D-K> :FindFile<CR>
-endif
 
 set list
 
