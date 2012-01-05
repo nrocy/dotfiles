@@ -13,7 +13,7 @@ setopt hist_ignore_dups
 export EDITOR=vim
 
 # paths
-export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/bin:$PATH:/Applications/MAMP/bin/php5/bin
+export PATH=usr/local/bin:$HOME/dotfiles/bin:$PATH
 export MANPATH=/opt/local/share/man:$MANPATH
 typeset -U path # fix any path dupes
 
@@ -28,10 +28,10 @@ export CLICOLOR=1
 export LSCOLORS=gxfxcxdxbxegedabagacad
 
 for COLOR in RED GREEN YELLOW WHITE BLACK CYAN; do
-  eval PR_$COLOR='%{$fg[${(L)COLOR}]%}'        
+  eval PR_$COLOR='%{$fg[${(L)COLOR}]%}'
   eval PR_BRIGHT_$COLOR='%{$fg_bold[${(L)COLOR}]%}'
-done                                                
-PR_RESET="%{${reset_color}%}";                       
+done
+PR_RESET="%{${reset_color}%}";
 
 # aliases
 if ls -F --color=auto >&/dev/null; then
@@ -46,6 +46,8 @@ alias grep='grep --color=auto'
 alias soywiki='SOYWIKI_VIM=mvim soywiki'
 alias diff='diff -u'
 alias be='bundle exec'
+alias vim='mvim -v'
+alias cdf='cd `posd`'
 
 # tab completion
 autoload -U compinit && compinit
