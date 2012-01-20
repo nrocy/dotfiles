@@ -23,7 +23,7 @@ export HISTCONTROL=erasedups
 shopt -s histappend
 
 export GIT_PS1_SHOWDIRTYSTATE=1
-export PS1='\n\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[1;35m\] $(__git_ps1 "(%s) ")\[\033[01;33m\]$(bg_jobs)\[\033[00m\]\$ '
+export PS1='\n`if [ $? = 0 ]; then echo "\[\033[01;32m\]✔"; else echo "\[\033[01;31m\]✘"; fi` \[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[1;35m\] $(__git_ps1 "(%s) ")\[\033[01;33m\]$(bg_jobs)\[\033[00m\]\$ '
 export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}: ${PWD/#$HOME/~}\007"'
 
 export LS_COLORS="di=00;36"
