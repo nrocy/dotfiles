@@ -13,7 +13,7 @@ setopt hist_ignore_dups
 export EDITOR=vim
 
 # paths
-export PATH=usr/local/bin:$HOME/dotfiles/bin:$PATH
+export PATH=/usr/local/bin:$HOME/dotfiles/bin:$PATH
 export MANPATH=/opt/local/share/man:$MANPATH
 typeset -U path # fix any path dupes
 

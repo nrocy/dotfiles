@@ -50,9 +50,6 @@ set noswapfile
 nmap <Up> :cprev<CR>
 nmap <Down> :cnext<CR>
 
-" CScope seems nicer than ctags
-" set cscopetag
-
 " from: http://items.sjbach.com/319/configuring-vim-right
 set hidden
 set history=1000
@@ -62,8 +59,6 @@ set showmode
 
 " wildcards
 set wildignore+=templates_c,vendor,.git
-
-" let g:easytags_cmd = '/opt/local/bin/ctags'
 
 " scroll offset
 set scrolloff=3

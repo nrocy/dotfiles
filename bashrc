@@ -14,7 +14,7 @@ function bg_jobs {
 	echo "$(jobs | wc -l | sed -e 's/^0$//' -e 's/^[0-9]\+$/[&] /')"
 }
 
-export PATH=$PATH:$HOME/bin
+export PATH=/usr/local/bin:$PATH:$HOME/bin
 
 export TERM="xterm-color"
 export GREP_OPTIONS="--color"
