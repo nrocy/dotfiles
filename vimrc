@@ -1,8 +1,10 @@
 
 " pathogen kicks ass
 filetype off
-call pathogen#helptags()
-call pathogen#runtime_append_all_bundles()
+"call pathogen#helptags()
+"call pathogen#runtime_append_all_bundles()
+
+call pathogen#infect()
 
 set nocompatible
 
@@ -124,7 +126,6 @@ nmap <space> zz
 
 " Buffers
 map <Leader>d :bd<CR>
-map <Leader>da :bufdo bd<CR>
 
 " Saving
 map <Leader>w <ESC>:w<CR>
@@ -146,11 +147,7 @@ nnoremap <Leader>e :e <C-R>=expand('%:p:h') . '/'<CR>
 " Plugin/Filetype Related
 """"""""""""""""""""""""""""""""""
 
-" a.vim
-let g:alternateExtensions_tpl = "php"
-let g:alternateExtensions_php = "tpl"
-let g:alternateSearchPath = 'templates'
-map <Leader>a :AV<CR>
+" let g:Powerline_symbols = 'unicode'
 
 " for PDV
 nnoremap <Leader>p :call PhpDocSingle()<CR>
@@ -172,6 +169,7 @@ set list
 " GUI specific
 if has("gui_running")
   set background=dark
+  set noantialias
   " colorscheme solarized
 endif
 
@@ -189,7 +187,7 @@ endif
 
 "set gfn=Droid_Sans_Mono:h11
 "set gfn=ProggyCleanTT:h15
-set gfn=Monaco:h10
+set gfn=Monaco:h14
 
 " see :h ft-lisp-syntax
 let g:lisp_rainbow = 1
@@ -207,11 +205,11 @@ endif
 " vim 7.3
 if v:version >= 703
   " Set color column colour
-  set colorcolumn=80
+  " set colorcolumn=80
   " really liked relativenumber at first but it's a bit buggy
   " set relativenumber
   " au BufNewFile,BufRead * set rnu
-  hi ColorColumn ctermbg=DarkGray guibg=#2d2d2d
+  " hi ColorColumn ctermbg=DarkGray guibg=#2d2d2d
 
   " Keep undo files so we can rollback
   set undofile

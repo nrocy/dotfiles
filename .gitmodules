@@ -1,9 +1,6 @@
 [submodule "vim/bundle/vim-javascript"]
 	path = vim/bundle/vim-javascript
 	url = git://github.com/regolith/vim-javascript.git
-[submodule "vim/bundle/vim-matchit"]
-	path = vim/bundle/vim-matchit
-	url = git://github.com/edsono/vim-matchit.git
 [submodule "vim/bundle/vim-repeat"]
 	path = vim/bundle/vim-repeat
 	url = git://github.com/tpope/vim-repeat.git
@@ -16,12 +13,6 @@
 [submodule "vim/bundle/vim-easytags"]
 	path = vim/bundle/vim-easytags
 	url = git://github.com/xolox/vim-easytags.git
-[submodule "vim/bundle/vim-slime"]
-	path = vim/bundle/vim-slime
-	url = git://github.com/jpalardy/vim-slime.git
-[submodule "vim/bundle/snipmate.vim"]
-	path = vim/bundle/snipmate.vim
-	url = git://github.com/msanders/snipmate.vim.git
 [submodule "vim/bundle/vim-tabspaces"]
 	path = vim/bundle/vim-tabspaces
 	url = git://github.com/nrocy/vim-tabspaces.git
@@ -34,6 +25,3 @@
 [submodule "vim/bundle/vim-ruby"]
 	path = vim/bundle/vim-ruby
 	url = git://github.com/vim-ruby/vim-ruby.git
-[submodule "vim/bundle/jslint.vim"]
-	path = vim/bundle/jslint.vim
-	url = git://github.com/hallettj/jslint.vim.git

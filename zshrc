@@ -56,11 +56,15 @@ autoload -U compinit && compinit
 setopt prompt_subst
 # autoload -U promptinit && promptinit
 
+. ~/dotfiles/bin/z.sh
+
 # set window title
 function precmd {
   print -Pn "\e]0;%n@%m: %~\a"
   vcs_info 'prompt'
   lprompt
+
+  _z --add "$(pwd -P)"
 }
 
 # git repositories
@@ -97,6 +101,8 @@ ${PR_CYAN}${current_path//\//${PR_WHITE}/${PR_RESET}${PR_CYAN}}${PR_RESET} $vcs_
 }
 
 lprompt
+
+unsetopt extended_glob
 
 # rvm / vim+rvm
 SHELL=/bin/zsh
