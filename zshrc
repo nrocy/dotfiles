@@ -10,7 +10,7 @@ setopt share_history
 setopt autocd
 setopt hist_ignore_dups
 
-export EDITOR=vim
+export EDITOR='mvim -v'
 
 # paths
 export PATH=/usr/local/bin:$HOME/dotfiles/bin:$PATH
@@ -48,6 +48,7 @@ alias diff='diff -u'
 alias be='bundle exec'
 alias vim='mvim -v'
 alias cdf='cd `posd`'
+
 
 # tab completion
 autoload -U compinit && compinit
