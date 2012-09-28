@@ -64,8 +64,6 @@ function precmd {
   print -Pn "\e]0;%n@%m: %~\a"
   vcs_info 'prompt'
   lprompt
-
-  _z --add "$(pwd -P)"
 }
 
 # git repositories

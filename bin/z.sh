@@ -3,20 +3,15 @@
 # maintains a jump-list of the directories you actually use
 #
 # INSTALL:
+#   * put something like this in your .bashrc/.zshrc:
+#     . /path/to/z.sh
+#   * cd around for a while to build up the db
+#   * PROFIT!!
 #   * optionally:
 #     set $_Z_CMD in .bashrc/.zshrc to change the command (default z).
 #     set $_Z_DATA in .bashrc/.zshrc to change the datafile (default ~/.z).
 #     set $_Z_NO_RESOLVE_SYMLINKS to prevent symlink resolution.
 #     set $_Z_NO_PROMPT_COMMAND if you're handling PROMPT_COMMAND yourself.
-#   * put something like this in your .bashrc:
-#     . /path/to/z.sh
-#   * put something like this in your .zshrc:
-#     . /path/to/z.sh
-#     function precmd () {
-#       _z --add "$(pwd -P)"
-#     }
-#   * cd around for a while to build up the db
-#   * PROFIT!!
 #
 # USE:
 #   * z foo     # cd to most frecent dir matching foo
@@ -124,9 +119,7 @@ _z() {
    }
    function output(files, toopen, override) {
     if( list ) {
-     if( typ == "recent" ) {
-      cmd = "sort -nr >&2"
-     } else cmd = "sort -n >&2"
+     cmd = "sort -n >&2"
      for( i in files ) if( files[i] ) printf "%-10s %s\n", files[i], i | cmd
      if( override ) printf "%-10s %s\n", "common:", override > "/dev/stderr"
     } else {
@@ -140,30 +133,29 @@ _z() {
      if( matches[i] && (!short || length(i) < length(short)) ) short = i
     }
     if( short == "/" ) return
-
-    # escape regex chars in right hand side
-    gsub(/[\(\[\|]/, "\\&", short)
-
-    # shortest match must be common to each match
-    for( i in matches ) if( matches[i] && i !~ short ) return
+    # shortest match must be common to each match. escape special characters in
+    # a copy when testing, so we can return the original.
+    clean_short = short
+    gsub(/[\(\)\[\]\|]/, "\\\\&", clean_short)
+    for( i in matches ) if( matches[i] && i !~ clean_short ) return
     return short
    }
-   BEGIN { split(q, a, " ") }
+   BEGIN { split(q, a, " "); oldf = noldf = -9999999999 }
    {
     if( typ == "rank" ) {
      f = $2
     } else if( typ == "recent" ) {
-     f = t-$3
+     f = $3-t
     } else f = frecent($2, $3)
     wcase[$1] = nocase[$1] = f
     for( i in a ) {
      if( $1 !~ a[i] ) delete wcase[$1]
      if( tolower($1) !~ tolower(a[i]) ) delete nocase[$1]
     }
-    if( wcase[$1] > oldf ) {
+    if( wcase[$1] && wcase[$1] > oldf ) {
      cx = $1
      oldf = wcase[$1]
-    } else if( nocase[$1] > noldf ) {
+    } else if( nocase[$1] && nocase[$1] > noldf ) {
      ncx = $1
      noldf = nocase[$1]
     }
@@ -183,15 +175,20 @@ alias ${_Z_CMD:-z}='_z 2>&1'
 
 [ "$_Z_NO_RESOLVE_SYMLINKS" ] || _Z_RESOLVE_SYMLINKS="-P"
 
-if complete &> /dev/null; then
- # bash tab completion
- complete -C '_z --complete "$COMP_LINE"' ${_Z_CMD:-z}
+if compctl &> /dev/null; then
  [ "$_Z_NO_PROMPT_COMMAND" ] || {
-  # populate directory list. avoid clobbering other PROMPT_COMMANDs.
-  echo $PROMPT_COMMAND | grep -q "_z --add"
-  [ $? -gt 0 ] && PROMPT_COMMAND='_z --add "$(pwd '$_Z_RESOLVE_SYMLINKS' 2>/dev/null)" 2>/dev/null;'"$PROMPT_COMMAND"
+  # zsh populate directory list, avoid clobbering any other precmds
+  if [ "$_Z_NO_RESOLVE_SYMLINKS" ]; then
+    _z_precmd() {
+      _z --add "${PWD:a}"
+    }
+  else
+    _z_precmd() {
+      _z --add "${PWD:A}"
+    }
+  fi
+  precmd_functions+=(_z_precmd)
  }
-elif compctl &> /dev/null; then
  # zsh tab completion
  _z_zsh_tab_completion() {
   local compl
@@ -199,4 +196,12 @@ elif compctl &> /dev/null; then
   reply=(${(f)"$(_z --complete "$compl")"})
  }
  compctl -U -K _z_zsh_tab_completion _z
+elif complete &> /dev/null; then
+ # bash tab completion
+ complete -o filenames -C '_z --complete "$COMP_LINE"' ${_Z_CMD:-z}
+ [ "$_Z_NO_PROMPT_COMMAND" ] || {
+  # bash populate directory list. avoid clobbering other PROMPT_COMMANDs.
+  echo $PROMPT_COMMAND | grep -q "_z --add"
+  [ $? -gt 0 ] && PROMPT_COMMAND='_z --add "$(pwd '$_Z_RESOLVE_SYMLINKS' 2>/dev/null)" 2>/dev/null;'"$PROMPT_COMMAND"
+ }
 fi

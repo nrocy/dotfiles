@@ -35,3 +35,5 @@ export GIT_DIFF_OPTS=-b
 alias be='bundle exec'
 alias ls='ls -l --color'
 
+. ~/dotfiles/bin/z.sh
+
