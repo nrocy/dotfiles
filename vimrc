@@ -35,7 +35,7 @@ set ruler
 " Search options
 set ignorecase
 set smartcase
-set grepprg=/opt/local/bin/ack
+set grepprg=~/bin/ack
 set gdefault "assume /g for :s subs
 set incsearch
 
