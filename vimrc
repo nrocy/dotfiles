@@ -32,6 +32,9 @@ set tags=tags;/
 set laststatus=2
 set ruler
 
+" Better block selection
+set virtualedit=block
+
 " Search options
 set ignorecase
 set smartcase
@@ -113,6 +116,9 @@ nnoremap k gk
 " disable F1, i've hit you in error for the last time!
 map <F1> <Esc>
 imap <F1> <Esc>
+
+" disable ex mode
+nnoremap Q <nop>
 
 """"""""""""""""""""""""""""""""""
 " General bindings
