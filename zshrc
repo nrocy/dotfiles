@@ -9,6 +9,7 @@ setopt share_history
 # setopt correct_all
 setopt autocd
 setopt hist_ignore_dups
+unsetopt nomatch
 
 export EDITOR='mvim -v'
 
