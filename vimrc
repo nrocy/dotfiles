@@ -120,6 +120,9 @@ imap <F1> <Esc>
 " disable ex mode
 nnoremap Q <nop>
 
+" close tags, handy for html
+imap ,/ </<C-X><C-O>
+
 """"""""""""""""""""""""""""""""""
 " General bindings
 """"""""""""""""""""""""""""""""""
