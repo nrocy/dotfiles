@@ -9,6 +9,10 @@ fi
 
 if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
 	. /usr/local/etc/bash_completion.d/git-completion.bash
+
+	if [ -f /usr/local/etc/bash_completion.d/git-prompt.sh ]; then
+		. /usr/local/etc/bash_completion.d/git-prompt.sh
+	fi
 fi
 
 # http://blog.sanctum.geek.nz/bash-prompts/
