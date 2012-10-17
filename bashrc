@@ -24,7 +24,13 @@ export PATH=/usr/local/bin:$HOME/bin:$PATH
 
 GREP_OPTIONS="--color=auto"
 
+# http://dancingpenguinsoflight.com/2008/11/bash-history-tips-and-tricks/
+HISTTIMEFORMAT='%Y-%m-%d %H:%M:%S '
+HISTSIZE=100000
+HISTFILESIZE=100000
+
 shopt -s histappend
+shopt -s cmdhist
 shopt -s cdspell
 
 export GIT_PS1_SHOWDIRTYSTATE=1

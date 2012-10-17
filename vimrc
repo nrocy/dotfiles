@@ -152,6 +152,9 @@ nnoremap <silent>]d m`:silent +g/\m^\s*$/d<CR>``:noh<CR>
 " open file in same dir
 nnoremap <Leader>e :e <C-R>=expand('%:p:h') . '/'<CR>
 
+" disable paste mode after leaving insert mode
+au InsertLeave * set nopaste
+
 """"""""""""""""""""""""""""""""""
 " Plugin/Filetype Related
 """"""""""""""""""""""""""""""""""
