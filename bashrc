@@ -15,11 +15,6 @@ if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
 	fi
 fi
 
-# http://blog.sanctum.geek.nz/bash-prompts/
-prompt_jobs() {
-	[[ -n "$(jobs)" ]] && printf '[%d] ' $(jobs | sed -n '$=')
-}
-
 export PATH=/usr/local/bin:$HOME/bin:$PATH
 
 GREP_OPTIONS="--color=auto"
@@ -34,10 +29,10 @@ shopt -s cmdhist
 shopt -s cdspell
 
 export GIT_PS1_SHOWDIRTYSTATE=1
-export PS1='\n`if [ $? = 0 ]; then echo "\[\033[01;32m\]✔"; else echo "\[\033[01;31m\]✘"; fi`\[\033[00m\] \! \[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[1;35m\] $(__git_ps1 "(%s) ")\[\033[01;33m\]$(prompt_jobs)\[\033[00m\]\$ '
+export PS1='\n\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[1;35m\] $(__git_ps1 "(%s) ")\[\033[01;33m\]$([ \j -gt 0 ] && echo [\j]\ )\[\033[00m\]\$ '
 export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}: ${PWD/#$HOME/~}\007"'
 
-export GIT_DIFF_OPTS=-b
+export GIT_DIFF_OPTS=-bw
 
 alias cd..='cd ..'
 alias diff='diff -u'
@@ -45,9 +40,9 @@ alias be='bundle exec'
 
 if [ `uname` == "Darwin" ]; then
 	export CLICOLOR=1
-	EDITOR='mvim -v'
+	EDITOR=$(which mvim)
 
-	alias vim=$EDITOR
+	alias vim='$EDITOR -v'
 	if [ -x /usr/local/bin/gls ]; then
 		alias ls='gls -lF --color'
 	fi
@@ -65,6 +60,5 @@ fi
 export EDITOR
 export GREP_OPTIONS
 
-export _Z_NO_PROMPT_COMMAND=1
 . ~/dotfiles/bin/z.sh
 
