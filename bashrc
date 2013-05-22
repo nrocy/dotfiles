@@ -37,6 +37,8 @@ export GIT_DIFF_OPTS=-bw
 alias cd..='cd ..'
 alias diff='diff -u'
 alias be='bundle exec'
+alias cpip="curl -s http://checkip.dyndns.org | tr -cd '[[:digit:].]' | pbcopy"
+alias socks="ssh -C2qTnNc blowfish -D 8080"
 
 if [ `uname` == "Darwin" ]; then
 	export CLICOLOR=1
@@ -62,3 +64,4 @@ export GREP_OPTIONS
 
 . ~/dotfiles/bin/z.sh
 
+# source ~/.rvm/scripts/rvm

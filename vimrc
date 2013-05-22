@@ -95,9 +95,6 @@ autocmd! bufwritepost .vimrc source ~/.vimrc
 " nuke whitespace at the end of lines before saving
 autocmd bufwritepre * :%s/\s\+$//e
 
-" set pman as K binding for php files
-autocmd FileType php setlocal keywordprg=pman
-
 " show function prototype when only one match during omnicomplete
 " from comments here: http://ruturajv.wordpress.com/2006/12/21/vim-7-autocomplete/
 set cot+=menuone
@@ -120,8 +117,8 @@ imap <F1> <Esc>
 " disable ex mode
 nnoremap Q <nop>
 
-" close tags, handy for html
-imap ,/ </<C-X><C-O>
+" close tags, handy for html, messes with ,<esc>
+" imap ,/ </<C-X><C-O>
 
 """"""""""""""""""""""""""""""""""
 " General bindings
@@ -161,6 +158,12 @@ au InsertLeave * set nopaste
 
 " let g:Powerline_symbols = 'unicode'
 
+let g:alternateSearchPath = "sfr:templates/"
+let g:alternateExtensions_php = "tpl"
+let g:alternateExtensions_tpl = "php"
+nmap <Leader>a :A<CR>
+nmap <Leader>A :AV<CR>
+
 " for PDV
 nnoremap <Leader>p :call PhpDocSingle()<CR>
 vnoremap <Leader>p :call PhpDocRange()<CR>
@@ -178,13 +181,6 @@ set guioptions-=T
 
 set list
 
-" GUI specific
-if has("gui_running")
-  set background=dark
-  set noantialias
-  " colorscheme solarized
-endif
-
 " colours
 set t_Co=256
 set background=dark
@@ -200,6 +196,20 @@ endif
 "set gfn=Droid_Sans_Mono:h11
 "set gfn=ProggyCleanTT:h15
 set gfn=Monaco:h14
+
+" demos
+" colorscheme hemisu
+" set background=light
+" set nonumber
+" set nolist
+" set gfn=Monaco:h18
+" au BufReadPost *.html set syntax=javascript
+
+" GUI specific
+if has("gui_running")
+  set noantialias
+  " colorscheme solarized
+endif
 
 " see :h ft-lisp-syntax
 let g:lisp_rainbow = 1
@@ -232,6 +242,10 @@ endif
 
 " misc funcs that sometimes come in useful, should really be in their own
 " files but I can't be arsed at the mo.
+
+" set pman as K binding for php files
+autocmd FileType php setlocal keywordprg=pman
+nnoremap K :silent !pman '<cword>'<CR> \| :redraw!<CR>
 
 :nmap <Leader>- :normal YpVr-<cr>
 

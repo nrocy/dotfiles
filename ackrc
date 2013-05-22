@@ -1,0 +1,6 @@
+--smart-case
+--follow
+--type-add=html=.tpl
+--ignore-dir=templates_c
+--type-set=IGNORE=.sql
+--noIGNORE
