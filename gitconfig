@@ -13,6 +13,7 @@
 	st = status -sb
 	br = branch
 	dc = diff --cached -w
+	pom = push origin master
 	graph = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit --date=relative
 [apply]
 	ignorewhitespace = change

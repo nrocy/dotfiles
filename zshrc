@@ -108,6 +108,3 @@ unsetopt extended_glob
 SHELL=/bin/zsh
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
-
-
-

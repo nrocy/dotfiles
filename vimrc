@@ -63,7 +63,7 @@ set wildmode=list:longest
 set showmode
 
 " wildcards
-set wildignore+=templates_c,vendor,.git
+set wildignore+=templates_c,vendor,.git,.hg,node_modules
 
 " scroll offset
 set scrolloff=3

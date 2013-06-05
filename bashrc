@@ -37,6 +37,7 @@ export GIT_DIFF_OPTS=-bw
 alias cd..='cd ..'
 alias diff='diff -u'
 alias be='bundle exec'
+
 alias cpip="curl -s http://checkip.dyndns.org | tr -cd '[[:digit:].]' | pbcopy"
 alias socks="ssh -C2qTnNc blowfish -D 8080"
 
@@ -48,6 +49,11 @@ if [ `uname` == "Darwin" ]; then
 	if [ -x /usr/local/bin/gls ]; then
 		alias ls='gls -lF --color'
 	fi
+
+	if [ -x /usr/local/bin/hub ]; then
+		alias git=hub
+	fi
+
 else
 	export LS_COLORS="di=00;36"
 	EDITOR='vim'
@@ -64,4 +70,3 @@ export GREP_OPTIONS
 
 . ~/dotfiles/bin/z.sh
 
-# source ~/.rvm/scripts/rvm

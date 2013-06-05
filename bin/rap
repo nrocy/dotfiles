@@ -1,0 +1,21 @@
+#!/bin/bash
+
+THIS=`basename $0`
+
+if [ $# -lt 2 ]; then
+  echo "Usage: $THIS <host> <port-list>"
+  exit -1
+fi
+
+HOST=$1
+shift
+
+while [[ $# -gt 0 ]]; do
+  echo -n "$HOST:$1... "
+  knock $HOST $1
+  sleep 1
+  shift
+done
+
+echo
+
