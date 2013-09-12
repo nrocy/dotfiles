@@ -63,7 +63,7 @@ set wildmode=list:longest
 set showmode
 
 " wildcards
-set wildignore+=templates_c,vendor,.git,.hg,node_modules
+set wildignore+=templates_c,vendor,.git,.hg,node_modules,*.png,*.jpg,*.gif
 
 " scroll offset
 set scrolloff=3
@@ -152,17 +152,20 @@ nnoremap <Leader>e :e <C-R>=expand('%:p:h') . '/'<CR>
 " disable paste mode after leaving insert mode
 au InsertLeave * set nopaste
 
+" ack shortcut
+noremap <leader>a :Ack<Space>
+
 """"""""""""""""""""""""""""""""""
 " Plugin/Filetype Related
 """"""""""""""""""""""""""""""""""
 
 " let g:Powerline_symbols = 'unicode'
 
-let g:alternateSearchPath = "sfr:templates/"
-let g:alternateExtensions_php = "tpl"
-let g:alternateExtensions_tpl = "php"
-nmap <Leader>a :A<CR>
-nmap <Leader>A :AV<CR>
+" let g:alternateSearchPath = "sfr:templates/"
+" let g:alternateExtensions_php = "tpl"
+" let g:alternateExtensions_tpl = "php"
+" nmap <Leader>a :A<CR>
+" nmap <Leader>A :AV<CR>
 
 " for PDV
 nnoremap <Leader>p :call PhpDocSingle()<CR>
@@ -173,6 +176,16 @@ let g:CommandTSelectNextMap = '<C-n>'
 let g:CommandTSelectPrevMap = '<C-p>'
 let g:CommandTAcceptSelectionSplitMap = '<C-j>'
 let g:CommandTAcceptSelectionVSplitMap = '<C-k>'
+
+let g:syntastic_javascript_checkers = ['jsl']
+let g:syntastic_javascript_jsl_conf = "--es5"
+let g:syntastic_error_symbol="✗"
+let g:syntastic_warning_symbol="⚠"
+let g:syntastic_style_error_symbol="s✗"
+let g:syntastic_style_warning_symbol="s⚠"
+let g:syntastic_auto_jump=1
+let g:syntastic_auto_loc_list=1
+let g:syntastic_loc_list_height=3
 
 " osx/gui settings
 set guioptions-=r
