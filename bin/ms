@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]; then
+  echo "No search terms."
+else
+  if mount | grep Boxes > /dev/null; then
+    echo "Searching for '$*'..."
+
+    ssh nroc@ns /usr/local/bin/mairix $*
+
+    if [ $? -eq 0 ]; then
+      exec mutt -R -f /Volumes/Boxes/gmail/searchresults
+    fi
+  else
+    echo "Mail archive not mounted."
+  fi
+fi
+

@@ -3,10 +3,9 @@
 [user]
 	name = Paul King
 	email = cronald@gmail.com
-[color]
-	ui = auto
 [diff]
 	tool = vimdiff
+	algorithm = patience
 [alias]
 	ci = commit
 	co = checkout
@@ -17,3 +16,7 @@
 	graph = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit --date=relative
 [apply]
 	ignorewhitespace = change
+[color]
+	ui = auto
+[push]
+	default = simple

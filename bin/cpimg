@@ -1,0 +1,17 @@
+#!/bin/bash
+
+HOST=172.16.50.100:15555
+LAST_IMG=`curl -s --connect-timeout 1 http://${HOST}/0/ | grep -i 'class="thumbnail"' | head -n 1 | sed 's/^.*src="\/0\/tn_\([0-9]*\).*$/fr_\1_size1024.jpg/'`
+
+if [ -z "${LAST_IMG}" ]; then
+  growlnotify -m "App not running"
+  exit -1
+fi
+
+IMG_PATH="http://${HOST}/0/${LAST_IMG}"
+DEST_PATH="http://norc.homeip.net/~nroc/ios/${LAST_IMG}"
+ssh nroc@hn "cd public_html/ios/ && wget -N --quiet ${IMG_PATH}"
+
+echo ${DEST_PATH}|pbcopy
+growlnotify -m "${LAST_IMG} uploaded"
+

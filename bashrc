@@ -15,7 +15,7 @@ if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
 	fi
 fi
 
-export PATH=/usr/local/bin:$HOME/bin:$PATH
+export PATH=/usr/local/bin:$HOME/bin:$PATH:/usr/local/share/npm/bin
 
 GREP_OPTIONS="--color=auto"
 
@@ -43,7 +43,7 @@ alias socks="ssh -C2qTnNc blowfish -D 8080"
 
 if [ `uname` == "Darwin" ]; then
 	export CLICOLOR=1
-	EDITOR=$(which mvim)
+	EDITOR='mvim -v'
 
 	alias vim='$EDITOR -v'
 	if [ -x /usr/local/bin/gls ]; then
