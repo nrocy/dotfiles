@@ -152,8 +152,8 @@ nnoremap <Leader>e :e <C-R>=expand('%:p:h') . '/'<CR>
 " disable paste mode after leaving insert mode
 au InsertLeave * set nopaste
 
-" ack shortcut
-noremap <leader>a :Ack<Space>
+" ag shortcut
+noremap <leader>a :Ag<Space>
 
 """"""""""""""""""""""""""""""""""
 " Plugin/Filetype Related
@@ -171,11 +171,7 @@ noremap <leader>a :Ack<Space>
 nnoremap <Leader>p :call PhpDocSingle()<CR>
 vnoremap <Leader>p :call PhpDocRange()<CR>
 
-nmap <silent> <Leader>f :CommandT<CR>
-let g:CommandTSelectNextMap = '<C-n>'
-let g:CommandTSelectPrevMap = '<C-p>'
-let g:CommandTAcceptSelectionSplitMap = '<C-j>'
-let g:CommandTAcceptSelectionVSplitMap = '<C-k>'
+let g:ctrlp_map = '<Leader>f'
 
 let g:syntastic_javascript_checkers = ['jsl']
 let g:syntastic_javascript_jsl_conf = "--es5"
