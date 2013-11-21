@@ -11,6 +11,7 @@
 	co = checkout
 	st = status -sb
 	br = branch
+	d = diff -w
 	dc = diff --cached -w
 	pom = push origin master
 	graph = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit --date=relative
@@ -20,3 +21,5 @@
 	ui = auto
 [push]
 	default = simple
+[init]
+	templatedir = ~/.git_template

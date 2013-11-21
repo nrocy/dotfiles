@@ -1,8 +1,8 @@
 
 " pathogen kicks ass
 filetype off
-"call pathogen#helptags()
-"call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+call pathogen#runtime_append_all_bundles()
 
 call pathogen#infect()
 
@@ -127,6 +127,12 @@ let mapleader = ","
 
 " mapping to select text that was just pasted
 nmap <Leader>v `[V`]
+
+" yank current line to system clipboard
+nmap <Leader>y ^"+y$
+
+" yank visual selection to system clipboard
+vmap <Leader>y "+yy
 
 nmap <space> zz
 
