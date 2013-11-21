@@ -3,6 +3,9 @@
 cd ~/
 ln -s ~/dotfiles/bin
 
-for i in vim ackrc bashrc gitconfig inputrc vimrc zshrc tmux.conf; do
+for i in vim ackrc bashrc gitconfig inputrc vimrc zshrc; do
   ln -s dotfiles/$i ~/.$i
 done
+
+ln -s dotfiles/tmux.conf ~/.tmux.conf
+
