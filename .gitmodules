@@ -10,9 +10,6 @@
 [submodule "vim/bundle/nerdcommenter"]
 	path = vim/bundle/nerdcommenter
 	url = git://github.com/scrooloose/nerdcommenter.git
-[submodule "vim/bundle/vim-easytags"]
-	path = vim/bundle/vim-easytags
-	url = git://github.com/xolox/vim-easytags.git
 [submodule "vim/bundle/vim-tabspaces"]
 	path = vim/bundle/vim-tabspaces
 	url = git://github.com/nrocy/vim-tabspaces.git
@@ -34,6 +31,6 @@
 [submodule "vim/bundle/ctrlp"]
 	path = vim/bundle/ctrlp
 	url = https://github.com/kien/ctrlp.vim.git
-[submodule "vim/bundle/vim-ag"]
-	path = vim/bundle/vim-ag
-	url = https://github.com/rking/ag.vim.git
+[submodule "vim/bundle/vim-tmux-navigator"]
+	path = vim/bundle/vim-tmux-navigator
+	url = https://github.com/christoomey/vim-tmux-navigator.git
