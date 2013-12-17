@@ -184,17 +184,17 @@ if executable('ag')
   let g:ctrlp_use_caching=0
 endif
 
-let g:syntastic_javascript_checkers = ['jsl']
-let g:syntastic_javascript_jsl_conf = "--es5"
+let g:syntastic_javascript_checkers = ['jshint']
+"let g:syntastic_javascript_jsl_conf = "--es5"
 let g:syntastic_error_symbol="✗"
 let g:syntastic_warning_symbol="⚠"
 let g:syntastic_style_error_symbol="s✗"
 let g:syntastic_style_warning_symbol="s⚠"
-let g:syntastic_auto_jump=1
+let g:syntastic_auto_jump=0
 let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_height=3
 
-let g:syntastic_mode_map={'mode': 'active', 'active_filetypes': [], 'passive_filetypes': ['html'] }
+let g:syntastic_mode_map={'mode': 'active', 'active_filetypes': ['js'], 'passive_filetypes': ['html'] }
 
 " osx/gui settings
 set guioptions-=r
