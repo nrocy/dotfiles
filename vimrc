@@ -163,6 +163,7 @@ au InsertLeave * set nopaste
 """"""""""""""""""""""""""""""""""
 
 " let g:Powerline_symbols = 'unicode'
+let g:airline_powerline_fonts = 1
 
 " let g:alternateSearchPath = "sfr:templates/"
 " let g:alternateExtensions_php = "tpl"
@@ -204,7 +205,7 @@ set guioptions-=T
 set list
 
 " colours
-set t_Co=256
+"set t_Co=256
 set background=dark
 colorscheme peaksea
 highlight SpecialKey ctermfg=DarkGray guifg=#666666
