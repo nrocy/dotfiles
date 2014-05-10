@@ -272,6 +272,11 @@ nnoremap K :silent !pman '<cword>'<CR> \| :redraw!<CR>
 
 :nmap <Leader>- :normal YpVr-<cr>
 
+function! PrettyJSON()
+  exe ":%!python -m json.tool"
+endfunction
+command! PrettyJSON call PrettyJSON()
+
 function! AdiumLogToTextFunction()
   let s:globaldefault = &gdefault
   let &gdefault = 0
