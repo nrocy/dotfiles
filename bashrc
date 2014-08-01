@@ -70,3 +70,7 @@ export GREP_OPTIONS
 
 . ~/dotfiles/bin/z.sh
 
+if [ -f ~/dotfiles/local_alias ]; then
+	. ~/dotfiles/local_alias
+fi
+

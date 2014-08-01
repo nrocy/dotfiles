@@ -1,0 +1,2 @@
+
+alias bw="ifstat -s public@pix -b -S -t -z"
