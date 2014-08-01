@@ -111,8 +111,8 @@ nnoremap j gj
 nnoremap k gk
 
 " disable F1, i've hit you in error for the last time!
-map <F1> <Esc>
-imap <F1> <Esc>
+" map <F1> <Esc>
+" imap <F1> <Esc>
 
 " disable ex mode
 nnoremap Q <nop>
@@ -267,8 +267,8 @@ endif
 " files but I can't be arsed at the mo.
 
 " set pman as K binding for php files
-autocmd FileType php setlocal keywordprg=pman
-nnoremap K :silent !pman '<cword>'<CR> \| :redraw!<CR>
+" autocmd FileType php setlocal keywordprg=pman
+" nnoremap K :silent !pman '<cword>'<CR> \| :redraw!<CR>
 
 :nmap <Leader>- :normal YpVr-<cr>
 
