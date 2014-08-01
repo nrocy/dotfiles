@@ -18,3 +18,20 @@ endsnippet
 snippet input
 <input type="$1" name="$2" value="$3">$0
 endsnippet
+
+snippet fet
+<table>
+	<thead>
+		<tr>
+			<th>$3</th>
+		</tr>
+	</thead>
+	<tbody>
+	{foreach from=$1 item=$2}
+		<tr>
+			<td>$4</td>
+		</tr>
+	{/foreach}
+	</tbody>
+</table>
+endsnippet
