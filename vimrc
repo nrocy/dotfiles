@@ -12,6 +12,9 @@ set nocompatible
 " from: http://stevelosh.com/blog/2010/09/coming-home-to-vim/
 set modelines=0
 
+set exrc
+set secure
+
 " fix broken backspace
 set backspace=2
 
@@ -93,7 +96,15 @@ nmap <silent> ,cd :lcd %:h<CR>
 autocmd! bufwritepost .vimrc source ~/.vimrc
 
 " nuke whitespace at the end of lines before saving
-autocmd bufwritepre * :%s/\s\+$//e
+
+function! <SID>StripTrailingWhitespace()
+  let l = line(".")
+  let c = col(".")
+  %s/\s\+$//e
+  call cursor(l, c)
+endfunction
+
+autocmd bufwritepre * :call <SID>StripTrailingWhitespace()
 
 " show function prototype when only one match during omnicomplete
 " from comments here: http://ruturajv.wordpress.com/2006/12/21/vim-7-autocomplete/
@@ -245,6 +256,10 @@ if &diff
   colorscheme peaksea
   nmap Q :qa!<CR>
   nmap <space> ]c
+  nmap <Left> do
+  nmap <Right> dp
+  nmap <Up> [c
+  nmap <Down> ]c
 endif
 
 " vim 7.3

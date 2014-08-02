@@ -15,18 +15,36 @@ if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
 	fi
 fi
 
-export PATH=/usr/local/bin:$HOME/bin:$PATH:/usr/local/share/npm/bin
+# coloured manpages: https://github.com/RobSis/dotfiles/blob/master/.shrc
+export PAGER=less
+man() {
+	env LESS_TERMCAP_mb=$'\E[01;31m' \
+		LESS_TERMCAP_md=$'\E[01;38;5;74m' \
+		LESS_TERMCAP_me=$'\E[0m' \
+		LESS_TERMCAP_se=$'\E[0m' \
+		LESS_TERMCAP_so=$'\E[38;5;246m' \
+		LESS_TERMCAP_ue=$'\E[0m' \
+		LESS_TERMCAP_us=$'\E[04;38;5;146m' \
+		man "$@"
+}
+
+export PATH=/usr/local/bin:$HOME/bin:$PATH:/usr/local/share/npm/bin:$HOME/src/adt/sdk/platform-tools:$HOME/src/adt/sdk/tools
 
 GREP_OPTIONS="--color=auto"
+LESS=-Ri
 
 # http://dancingpenguinsoflight.com/2008/11/bash-history-tips-and-tricks/
 HISTTIMEFORMAT='%Y-%m-%d %H:%M:%S '
 HISTSIZE=100000
 HISTFILESIZE=100000
+HISTCONTROL=ignoreboth:erasedups
 
 shopt -s histappend
 shopt -s cmdhist
 shopt -s cdspell
+
+# disable stop/start terminal control
+stty -ixon -ixoff
 
 export GIT_PS1_SHOWDIRTYSTATE=1
 export PS1='\n\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[1;35m\] $(__git_ps1 "(%s) ")\[\033[01;33m\]$([ \j -gt 0 ] && echo [\j]\ )\[\033[00m\]\$ '
